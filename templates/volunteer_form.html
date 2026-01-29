@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add Volunteer Activity</title>
+<style>
+body { font-family: Arial; background: #eaf5ea; display: flex; justify-content: center; align-items: center; height: 100vh; }
+.container { background: #fff; padding: 40px; border-radius: 15px; width: 350px; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+h1 { text-align: center; color: #2e7d32; margin-bottom: 25px; }
+label { display: block; margin-top: 15px; font-weight: bold; color: #2e7d32; }
+input[type="text"] { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc; }
+input[type="submit"] { width: 100%; padding: 12px; margin-top: 25px; border: none; background: #fbc02d; color: white; font-size: 16px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+input[type="submit"]:hover { background: #2e7d32; }
+a.back-link { display: block; text-align: center; margin-top: 15px; color: #2e7d32; font-weight: bold; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Add Volunteer Activity</h1>
+<form method="POST">
+<label>Activity Name</label>
+<input type="text" name="name" required>
+<label>Activity Description</label>
+<input type="text" name="activity" required>
+<input type="submit" value="Submit">
+</form>
+<a class="back-link" href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</div>
+</body>
+</html>

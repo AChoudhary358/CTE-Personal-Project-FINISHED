@@ -1,0 +1,16 @@
+[
+  {
+    "student": "oliviam90",
+    "activity": "Trash Pickup",
+    "hours": "2",
+    "description": "I with TSA picked up some trash in lunch and afterschool.",
+    "status": "approved"
+  },
+  {
+    "student": "oliviam90",
+    "activity": "Trash Pickup",
+    "hours": "2",
+    "description": "I with TSA picked up some trash in lunch and afterschool.",
+    "status": "rejected"
+  }
+]

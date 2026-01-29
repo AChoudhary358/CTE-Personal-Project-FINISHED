@@ -1,0 +1,32 @@
+{
+  "admin": {
+    "password": "admin123",
+    "role": "admin",
+    "status": "approved"
+  },
+  "teacher1": {
+    "password": "teach123",
+    "role": "teacher",
+    "status": "approved"
+  },
+  "student1": {
+    "password": "pass123",
+    "role": "student",
+    "status": "approved"
+  },
+  "Ansh Choudhary": {
+    "password": "admin123",
+    "role": "admin",
+    "status": "approved"
+  },
+  "Butler": {
+    "password": "Butler123",
+    "role": "teacher",
+    "status": "approved"
+  },
+  "oliviam90": {
+    "password": "oliviam90",
+    "role": "student",
+    "status": "approved"
+  }
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4fff6;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #0b5d1e;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      margin-bottom: 30px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    th {
+      background: #0b5d1e;
+      color: gold;
+    }
+    .btn {
+      padding: 6px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+    }
+    .logout {
+      float: right;
+      background: darkred;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .section-title {
+      margin-top: 40px;
+    }
+    .submit-btn {
+      background: #0b5d1e;
+      color: gold;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background: gold;
+      color: #0b5d1e;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px 0;
+      border-radius: 5px;
+      border: 1px solid #0b5d1e;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Welcome, {{ username }}!</h1>
+<a href="{{ url_for('logout') }}" class="logout">Logout</a>
+
+<!-- Submit Volunteer Hours -->
+<h2 class="section-title">Submit New Volunteer Activity</h2>
+<form action="/student_dashboard" method="post">
+  <label>Activity Name:</label>
+  <input type="text" name="activity" required>
+
+  <label>Hours:</label>
+  <input type="number" name="hours" min="0.5" step="0.5" required>
+
+  <label>Description:</label>
+  <textarea name="description" rows="3" required></textarea>
+
+  <button type="submit" class="submit-btn">Submit</button>
+</form>
+
+<!-- Pending Volunteer Hours -->
+<h2 class="section-title">Pending Approval</h2>
+{% if pending_volunteers %}
+<table>
+  <tr>
+    <th>Activity</th>
+    <th>Hours</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr>
+  {% for v in pending_volunteers %}
+  <tr>
+    <td>{{ v.activity }}</td>
+    <td>{{ v.hours }}</td>
+    <td>{{ v.description }}</td>
+    <td>{{ v.status }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No pending volunteer activities.</p>
+{% endif %}
+
+<!-- Approved Volunteer Hours -->
+<h2 class="section-title">Approved Activities</h2>
+{% if approved_volunteers %}
+<table>
+  <tr>
+    <th>Activity</th>
+    <th>Hours</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr>
+  {% for v in approved_volunteers %}
+  <tr>
+    <td>{{ v.activity }}</td>
+    <td>{{ v.hours }}</td>
+    <td>{{ v.description }}</td>
+    <td>{{ v.status }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No approved volunteer activities yet.</p>
+{% endif %}
+
+</body>
+</html>

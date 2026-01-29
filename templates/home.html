@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Volunteer Portal</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4fff6;
+      padding: 40px;
+      text-align: center;
+    }
+    h1 {
+      color: #0b5d1e;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #0b5d1e;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      margin: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      background-color: #0b5d1e; /* green */
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: gold;
+      color: #0b5d1e;
+    }
+    select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #0b5d1e;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+    form {
+      margin-top: 20px;
+    }
+    .learn-more {
+      background-color: gold;
+      color: #0b5d1e;
+    }
+    .learn-more:hover {
+      background-color: #0b5d1e;
+      color: gold;
+    }
+    #learn {
+      display: none; /* hidden initially */
+      margin-top:50px;
+      text-align:left;
+      max-width:700px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Welcome to the Volunteering at North Hills!</h1>
+<p>Sign up, log hours, and make a noticeable effort!</p>
+
+<!-- Learn More Button -->
+<button id="learnBtn" class="btn learn-more">Learn More</button>
+
+<!-- Login Form with Role Dropdown -->
+<form action="" method="get" id="loginForm">
+  <label for="role">Login as:</label>
+  <select id="role" name="role">
+    <option value="student">Student</option>
+    <option value="teacher">Teacher</option>
+    <option value="admin">Admin</option>
+  </select>
+  <a href="#" id="loginBtn" class="btn">Login</a>
+  <a href="/signup" class="btn" style="background-color:gold;color:#0b5d1e;">Sign Up</a>
+</form>
+
+<!-- Learn More Section -->
+<div id="learn">
+  <h2>About This Portal</h2>
+  <p>This Volunteer platform allows you to log your community service, then your teachers can approve them, and admins can manage users and oversee your activity. Have fun! Look around! All while helping your community!</p>
+</div>
+
+<script>
+  const loginBtn = document.getElementById('loginBtn');
+  const roleSelect = document.getElementById('role');
+  const learnBtn = document.getElementById('learnBtn');
+  const learnSection = document.getElementById('learn');
+
+  // Login button redirect
+  loginBtn.addEventListener('click', function() {
+    const role = roleSelect.value;
+    window.location.href = "/login/" + role;
+  });
+
+  // Learn More toggle
+  learnBtn.addEventListener('click', function() {
+    if (learnSection.style.display === "none") {
+      learnSection.style.display = "block";
+      learnBtn.textContent = "Hide";
+    } else {
+      learnSection.style.display = "none";
+      learnBtn.textContent = "Learn More";
+    }
+  });
+</script>
+
+</body>
+</html>

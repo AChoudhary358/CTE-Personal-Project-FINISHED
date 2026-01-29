@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Teacher Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4fff6;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #0b5d1e;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      margin-bottom: 30px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    th {
+      background: #0b5d1e;
+      color: gold;
+    }
+    .btn {
+      padding: 6px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+    }
+    .approve { background: green; }
+    .reject { background: darkred; }
+    .logout {
+      float: right;
+      background: darkred;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .section-title {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Teacher Dashboard</h1>
+<a href="{{ url_for('logout') }}" class="logout">Logout</a>
+
+<h2 class="section-title">Pending Volunteer Submissions</h2>
+{% if pending_volunteers %}
+<table>
+  <tr>
+    <th>Student</th>
+    <th>Activity</th>
+    <th>Hours</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  {% for v in pending_volunteers %}
+  <tr>
+    <td>{{ v.student }}</td>
+    <td>{{ v.activity }}</td>
+    <td>{{ v.hours }}</td>
+    <td>{{ v.description }}</td>
+    <td>{{ v.status }}</td>
+    <td>
+      <a class="btn approve" href="/approve_volunteer/{{ loop.index0 }}">Approve</a>
+      <a class="btn reject" href="/reject_volunteer/{{ loop.index0 }}">Reject</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No pending volunteer submissions.</p>
+{% endif %}
+
+<h2 class="section-title">All Volunteer Submissions</h2>
+{% if all_volunteers %}
+<table>
+  <tr>
+    <th>Student</th>
+    <th>Activity</th>
+    <th>Hours</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr>
+  {% for v in all_volunteers %}
+  <tr>
+    <td>{{ v.student }}</td>
+    <td>{{ v.activity }}</td>
+    <td>{{ v.hours }}</td>
+    <td>{{ v.description }}</td>
+    <td>{{ v.status }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No volunteer submissions yet.</p>
+{% endif %}
+
+</body>
+</html>

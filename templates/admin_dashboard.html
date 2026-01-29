@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4fff6;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #0b5d1e;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      margin-bottom: 30px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    th {
+      background: #0b5d1e;
+      color: gold;
+    }
+    .btn {
+      padding: 6px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+    }
+    .approve { background: green; }
+    .reject { background: darkred; }
+    .logout {
+      float: right;
+      background: darkred;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .section-title {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+<a href="{{ url_for('logout') }}" class="logout">Logout</a>
+
+<!-- TEACHER APPROVAL -->
+<h2 class="section-title">Pending Teacher Approvals</h2>
+{% if pending_teachers %}
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Action</th>
+  </tr>
+  {% for t in pending_teachers %}
+  <tr>
+    <td>{{ t }}</td>
+    <td>
+      <a class="btn approve" href="/admin/approve_teacher/{{ t }}">Approve</a>
+      <a class="btn reject" href="/admin/reject_teacher/{{ t }}">Reject</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No pending teachers.</p>
+{% endif %}
+
+<!-- STUDENT APPROVAL -->
+<h2 class="section-title">Pending Student Approvals</h2>
+{% if pending_students %}
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Action</th>
+  </tr>
+  {% for s in pending_students %}
+  <tr>
+    <td>{{ s }}</td>
+    <td>
+      <a class="btn approve" href="/admin/approve_student/{{ s }}">Approve</a>
+      <a class="btn reject" href="/admin/reject_student/{{ s }}">Reject</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No pending students.</p>
+{% endif %}
+
+<!-- ALL USERS OVERVIEW -->
+<h2 class="section-title">All Users</h2>
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Role</th>
+    <th>Status</th>
+  </tr>
+  {% for u in users %}
+  <tr>
+    <td>{{ u.username }}</td>
+    <td>{{ u.role }}</td>
+    <td>{{ u.status }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<!-- VOLUNTEER LOGS -->
+<h2 class="section-title">All Volunteer Logs</h2>
+<table>
+  <tr>
+    <th>Student</th>
+    <th>Activity</th>
+    <th>Hours</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr>
+  {% for v in volunteers %}
+  <tr>
+    <td>{{ v.student }}</td>
+    <td>{{ v.activity }}</td>
+    <td>{{ v.hours }}</td>
+    <td>{{ v.description }}</td>
+    <td>{{ v.status }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>
